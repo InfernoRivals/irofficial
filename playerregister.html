@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inferno Rivals | Player Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --ir-red: #ff3131; --bg-black: #050505; --card-bg: #0f0f0f; }
+        
+        /* Universal Box Fix */
+        * { box-sizing: border-box; }
+
+        body { 
+            background-color: var(--bg-black); 
+            color: white; 
+            font-family: 'Open Sans', sans-serif; 
+            background: radial-gradient(circle at top left, #1a0505 0%, #050505 60%); 
+            margin: 0; padding: 20px; 
+            display: flex; justify-content: center;
+        }
+
+        .form-container { 
+            width: 100%; 
+            max-width: 850px; /* Extended but stable width */
+            background: var(--card-bg); 
+            padding: clamp(20px, 5vw, 40px); /* Responsive padding */
+            border-radius: 20px; 
+            border: 1px solid #222; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        h2 { 
+            font-family: 'Russo One'; color: var(--ir-red); 
+            margin-bottom: 40px; font-size: 1.8rem; 
+            letter-spacing: 2px; text-transform: uppercase;
+            border-left: 5px solid var(--ir-red); padding-left: 15px;
+        }
+
+        .form-section {
+            display: flex; flex-direction: column; gap: 20px;
+            margin-bottom: 40px; border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 30px;
+        }
+
+        .section-info h3 {
+            font-family: 'Russo One'; font-size: 0.9rem;
+            color: #666; text-transform: uppercase; margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .input-fields { width: 100%; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Fixed Grid Row: Uses 1fr 1fr but collapses perfectly */
+        .grid-row { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            width: 100%; 
+        }
+
+        .input-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+        
+        label { font-size: 0.75rem; color: #888; font-weight: 600; text-transform: uppercase; }
+
+        input, select { 
+            width: 100%; padding: 14px; background: #000; 
+            border: 1px solid #333; border-radius: 10px; 
+            color: white; font-size: 0.95rem; transition: 0.3s;
+        }
+
+        input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+        input:focus { border-color: var(--ir-red); outline: none; background: #080808; }
+
+        .time-picker-row { 
+            display: flex; flex-wrap: wrap; align-items: center; gap: 15px; 
+            background: #000; padding: 10px; border-radius: 10px; border: 1px solid #333;
+        }
+        .time-picker-row input { border: none; width: auto; flex: 1; }
+        .time-label { font-size: 0.8rem; color: #555; font-weight: bold; }
+
+        .btn-submit { 
+            display: block; margin: 20px 0 0 auto; width: 100%; max-width: 250px; 
+            padding: 18px; background: var(--ir-red); 
+            color: white; border: none; border-radius: 50px; 
+            font-family: 'Russo One'; cursor: pointer; 
+            transition: 0.3s; font-size: 1rem;
+        }
+        
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 49, 49, 0.3); }
+
+        @media (max-width: 500px) {
+            .btn-submit { max-width: 100%; }
+            .time-picker-row { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Player  Application</h2>
+    <form id="playerForm">
+        
+        <div class="form-section">
+            <div class="section-info"><h3>Identity</h3></div>
+            <div class="input-fields">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="age" required>
+                    </div>
+                    <div class="input-group">
+                        <label>FreeFire UID</label>
+                        <input type="text" id="uid" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-info"><h3>Contact</h3></div>
+            <div class="input-fields">
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Instagram ID</label>
+                        <input type="text" id="instaID" placeholder="@username">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-info"><h3>Gameplay</h3></div>
+            <div class="input-fields">
+                <div class="input-group">
+                    <label>In-Game Name (IGN)</label>
+                    <input type="text" id="ign" required>
+                </div>
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Primary Role</label>
+                        <select id="primaryRole">
+                            <option value="P. Rusher">P. Rusher</option>
+                            <option value="S. Rusher">S. Rusher</option>
+                            <option value="Sniper">Sniper</option>
+                            <option value="Nader">Nader</option>
+                            <option value="Assaulter">Assaulter</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Sec. Role</label>
+                        <select id="secRole">
+                            <option value="None">None</option>
+                            <option value="IGL">IGL</option>
+                            <option value="Helper">Helper</option>
+                            <option value="All Rounder">All Rounder</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Playstyle</label>
+                    <select id="playstyle">
+                        <option value="Aggressive">Aggressive</option>
+                        <option value="Passive">Passive</option>
+                        <option value="Balanced">Balanced</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-info"><h3>Experience</h3></div>
+            <div class="input-fields">
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Game Exp (Years)</label>
+                        <input type="number" id="gameExp">
+                    </div>
+                    <div class="input-group">
+                        <label>E-sports Exp (Years)</label>
+                        <input type="number" id="esportsExp">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Online Time (Availability)</label>
+                    <div class="time-picker-row">
+                        <span class="time-label">FROM</span>
+                        <input type="time" id="timeFrom" required>
+                        <span class="time-label">TO</span>
+                        <input type="time" id="timeTo" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Submit To Inferno</button>
+    </form>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCai5KkljytAcGAV9fZIzn1lanK0w4Dr8I",
+    authDomain: "player-registration-399c9.firebaseapp.com",
+    databaseURL: "https://player-registration-399c9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "player-registration-399c9",
+    storageBucket: "player-registration-399c9.firebasestorage.app",
+    messagingSenderId: "720387122234",
+    appId: "1:720387122234:web:95aa45a46ef2bff36a0103",
+    measurementId: "G-JHSWM31E42"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  document.getElementById('playerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const rawName = document.getElementById('fullName').value;
+    const sanitizedName = rawName.replace(/[.#$[\]]/g, ""); 
+
+    btn.disabled = true;
+    btn.innerText = "Sending...";
+
+    const formData = {
+        fullName: rawName,
+        age: document.getElementById('age').value,
+        uid: document.getElementById('uid').value,
+        whatsapp: document.getElementById('whatsapp').value,
+        instaID: document.getElementById('instaID').value,
+        ign: document.getElementById('ign').value,
+        primaryRole: document.getElementById('primaryRole').value,
+        secondaryRole: document.getElementById('secRole').value,
+        playstyle: document.getElementById('playstyle').value,
+        gameExp: document.getElementById('gameExp').value,
+        esportsExp: document.getElementById('esportsExp').value,
+        onlineAvailability: {
+            from: document.getElementById('timeFrom').value,
+            to: document.getElementById('timeTo').value
+        },
+        timestamp: new Date().toISOString()
+    };
+
+    const playerRef = ref(db, 'registrations/players/' + sanitizedName);
+
+    set(playerRef, formData)
+    .then(() => {
+        alert("Success! Application saved.");
+        window.location.reload();
+    })
+    .catch((err) => {
+        alert("Error: " + err.message);
+        btn.disabled = false;
+        btn.innerText = "Submit To Inferno";
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Hub | INFERNO RIVALS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --ir-red: #ff3131; --bg-black: #050505; --card-bg: #0f0f0f; }
+        * { box-sizing: border-box; }
+
+        body { 
+            background-color: var(--bg-black); color: white; 
+            font-family: 'Open Sans', sans-serif; 
+            background: radial-gradient(circle at top left, #1a0505 0%, #050505 60%); 
+            margin: 0; padding: 20px 10px; 
+            display: flex; justify-content: center;
+        }
+
+        .form-container { 
+            width: 100%; max-width: 850px; 
+            background: var(--card-bg); 
+            padding: clamp(15px, 5vw, 40px);
+            border-radius: 20px; border: 1px solid #222; 
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        h2 { 
+            font-family: 'Russo One'; color: var(--ir-red); 
+            margin-bottom: 30px; font-size: 1.6rem; 
+            letter-spacing: 2px; text-transform: uppercase;
+            border-left: 5px solid var(--ir-red); padding-left: 15px;
+        }
+
+        .form-section {
+            display: flex; flex-direction: column; gap: 15px;
+            margin-bottom: 35px; border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 25px;
+        }
+
+        .section-info h3 {
+            font-family: 'Russo One'; font-size: 0.85rem;
+            color: #555; text-transform: uppercase; margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .input-fields { width: 100%; display: flex; flex-direction: column; gap: 15px; }
+        
+        .grid-row { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+            gap: 20px; width: 100%; 
+        }
+
+        .input-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+        
+        label { font-size: 0.75rem; color: #888; font-weight: 600; text-transform: uppercase; }
+
+        input, select { 
+            width: 100%; padding: 14px; background: #000; 
+            border: 1px solid #333; border-radius: 10px; 
+            color: white; font-size: 0.95rem; transition: 0.3s;
+        }
+
+        input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+        input:focus { border-color: var(--ir-red); outline: none; background: #080808; }
+
+        .time-picker-row { 
+            display: flex; flex-wrap: wrap; align-items: center; gap: 12px; 
+            background: #000; padding: 12px; border-radius: 10px; border: 1px solid #333;
+        }
+        .time-picker-row input { border: none; width: auto; flex: 1; min-width: 100px; padding: 5px; }
+        .time-label { font-size: 0.75rem; color: #444; font-weight: bold; }
+
+        .btn-submit { 
+            display: block; margin: 10px 0 0 auto; 
+            width: 100%; max-width: 280px; 
+            padding: 18px; background: var(--ir-red); 
+            color: white; border: none; border-radius: 50px; 
+            font-family: 'Russo One'; cursor: pointer; 
+            transition: 0.3s; font-size: 1rem;
+        }
+        
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 49, 49, 0.3); }
+
+        @media (max-width: 480px) {
+            .btn-submit { max-width: 100%; }
+            .time-picker-row { flex-direction: column; align-items: flex-start; }
+            .time-picker-row input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Coach Registration</h2>
+    <form id="coachForm">
+        
+        <div class="form-section">
+            <div class="section-info"><h3>Identity</h3></div>
+            <div class="input-fields">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="age" required>
+                    </div>
+                    <div class="input-group">
+                        <label>In-Game Name (IGN)</label>
+                        <input type="text" id="ign" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>In-Game UID</label>
+                    <input type="text" id="uid" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-info"><h3>Experience</h3></div>
+            <div class="input-fields">
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>Game Experience</label>
+                        <select id="gameExp" required>
+                            <option value="1+ Year">1+ Year</option>
+                            <option value="2+ Years">2+ Years</option>
+                            <option value="3+ Years">3+ Years</option>
+                            <option value="4+ Years">4+ Years</option>
+                            <option value="5+ Years">5+ Years</option>
+                            <option value="6+ Years">6+ Years</option>
+                            <option value="7+ Years">7+ Years</option>
+                            <option value="8+ Years">8+ Years</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Coach Experience</label>
+                        <select id="coachExp" required>
+                            <option value="1+ Year">1+ Year</option>
+                            <option value="2+ Years">2+ Years</option>
+                            <option value="3+ Years">3+ Years</option>
+                            <option value="4+ Years">4+ Years</option>
+                            <option value="5+ Years">5+ Years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Strongest Coaching Topic</label>
+                    <select id="strongTopic" required>
+                        <option value="Map Rotations">Map Rotations</option>
+                        <option value="Fight Initiation">Fight Initiation</option>
+                        <option value="Strategy Making">Strategy Making</option>
+                        <option value="Player Mistake Checking/Solving">Player Mistake Checking/Solving</option>
+                        <option value="All of the above">All of the above</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section" style="border:none;">
+            <div class="section-info"><h3>Availability & Contact</h3></div>
+            <div class="input-fields">
+                <div class="input-group">
+                    <label>Online Time (Availability)</label>
+                    <div class="time-picker-row">
+                        <span class="time-label">FROM</span>
+                        <input type="time" id="timeFrom" required>
+                        <span class="time-label">TO</span>
+                        <input type="time" id="timeTo" required>
+                    </div>
+                </div>
+                <div class="grid-row">
+                    <div class="input-group">
+                        <label>WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Instagram ID</label>
+                        <input type="text" id="instaID" placeholder="@username">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Register Coach</button>
+    </form>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCai5KkljytAcGAV9fZIzn1lanK0w4Dr8I",
+    authDomain: "player-registration-399c9.firebaseapp.com",
+    databaseURL: "https://player-registration-399c9-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "player-registration-399c9",
+    storageBucket: "player-registration-399c9.firebasestorage.app",
+    messagingSenderId: "720387122234",
+    appId: "1:720387122234:web:95aa45a46ef2bff36a0103",
+    measurementId: "G-JHSWM31E42"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  document.getElementById('coachForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const rawName = document.getElementById('fullName').value;
+    
+    // Cleaning the name for Firebase folder path
+    const sanitizedName = rawName.replace(/[.#$[\]]/g, ""); 
+
+    btn.disabled = true;
+    btn.innerText = "Processing...";
+
+    const formData = {
+        fullName: rawName,
+        age: document.getElementById('age').value,
+        ign: document.getElementById('ign').value,
+        uid: document.getElementById('uid').value,
+        gameExperience: document.getElementById('gameExp').value,
+        coachExperience: document.getElementById('coachExp').value,
+        strongestTopic: document.getElementById('strongTopic').value,
+        availability: {
+            from: document.getElementById('timeFrom').value,
+            to: document.getElementById('timeTo').value
+        },
+        contact: {
+            whatsapp: document.getElementById('whatsapp').value,
+            instagram: document.getElementById('instaID').value
+        },
+        timestamp: new Date().toISOString()
+    };
+
+    // SAVING TO 'coaches' FOLDER using full name as key
+    const coachRef = ref(db, 'registrations/coaches/' + sanitizedName);
+
+    set(coachRef, formData)
+    .then(() => {
+        alert("Success! Coach " + rawName + " has been registered.");
+        window.location.reload();
+    })
+    .catch((err) => {
+        alert("Database Error: " + err.message);
+        btn.disabled = false;
+        btn.innerText = "Register Coach";
+    });
+  });
+</script>
+
+</body>
+</html>
