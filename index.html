@@ -13,11 +13,11 @@
             --card-bg: #111111;
         }
 
-        /* --- STAGE SETUP --- */
+        /* --- STAGE SETUP (STRICT NO SCROLL) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html, body {
-            height: 100vh;
+            height: 100dvh; /* Dynamic height to fix mobile browser bars */
             width: 100vw;
             overflow: hidden;
             background-color: var(--bg-black);
@@ -29,17 +29,17 @@
         body {
             display: flex;
             flex-direction: column;
-            padding: 1vh 0;
+            padding: 5px 0;
         }
 
         /* --- HEADER --- */
         header {
-            flex: 0 0 auto;
+            flex: 0 0 auto; /* Do not shrink header */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
-            padding: 10px 0;
+            gap: 8px;
+            padding: 5px 0;
         }
 
         .logo-container {
@@ -49,9 +49,9 @@
         }
 
         .logo-img { 
-            height: 75px; 
+            height: 60px; /* Adjusted slightly to save vertical space */
             width: auto;
-            filter: drop-shadow(0 0 12px var(--ir-red)); 
+            filter: drop-shadow(0 0 10px var(--ir-red)); 
         }
 
         /* --- MINI SELECTOR --- */
@@ -61,7 +61,6 @@
             gap: 6px;
             width: 94%;
             max-width: 500px;
-            margin: 0 auto;
         }
         
         .mini-box {
@@ -69,30 +68,30 @@
             background: #111;
             border: 1px solid #333;
             border-radius: 4px;
-            padding: 8px 2px;
+            padding: 6px 2px;
             text-align: center;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .mini-box.active { border-color: var(--ir-red); background: #1a0000; }
-        .mini-box h3 { font-family: 'Russo One'; font-size: 0.5rem; color: #888; }
-        .mini-box .mini-name { font-size: 0.55rem; font-weight: bold; display: block; margin-top: 2px; }
+        .mini-box h3 { font-family: 'Russo One'; font-size: 0.45rem; color: #888; }
+        .mini-box .mini-name { font-size: 0.5rem; font-weight: bold; display: block; }
 
-        /* --- MAIN DISPLAY --- */
+        /* --- MAIN DISPLAY (Auto-shrinks to fit screen) --- */
         #display-area {
-            flex: 1;
+            flex: 1 1 auto; /* Grow and shrink as needed */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 5px 0;
-            min-height: 0;
+            padding: 10px 0;
+            min-height: 0; /* Allows container to shrink below content size */
         }
 
         .huge-card {
-            width: 90%;
-            max-width: 340px;
-            height: 95%; 
+            width: 85%;
+            max-width: 320px;
+            height: 100%; /* Fill the available flex space */
+            max-height: 420px; /* Prevents card from getting too tall on tablets */
             background: var(--card-bg);
             border-radius: 12px;
             display: flex;
@@ -108,8 +107,9 @@
         .huge-card.cofounder { border: 1.5px solid var(--ir-red); }
 
         .photo-frame {
-            height: 85%; /* Increased from 75% */
+            flex: 1; /* Takes most of the card space */
             background: #000;
+            overflow: hidden;
         }
         .photo-frame img { 
             width: 100%; 
@@ -119,8 +119,7 @@
         }
 
         .card-info { 
-            height: 15%; /* Decreased from 25% */
-            padding: 5px 10px; 
+            flex: 0 0 50px; /* Fixed height for text area */
             text-align: center; 
             background: #0d0d0d;
             border-top: 1px solid #222;
@@ -128,36 +127,25 @@
             flex-direction: column;
             justify-content: center;
         }
-        .card-info h2 { 
-            font-family: 'Russo One'; 
-            font-size: 0.95rem; /* Slightly smaller font to fit better */
-            margin: 0; 
-            letter-spacing: 0.5px; 
-        }
-        .card-info p { 
-            color: var(--ir-red); 
-            font-size: 0.6rem; 
-            text-transform: uppercase; 
-            margin-top: 2px; 
-            font-weight: bold; 
-        }
+        .card-info h2 { font-family: 'Russo One'; font-size: 0.85rem; margin: 0; }
+        .card-info p { color: var(--ir-red); font-size: 0.55rem; text-transform: uppercase; font-weight: bold; }
 
         /* --- FOOTER ACTIONS --- */
         .footer-actions {
-            flex: 0 0 auto;
+            flex: 0 0 auto; /* Stay at bottom */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding-bottom: 10px;
+            gap: 6px;
+            padding: 5px 0;
         }
 
         .btn {
-            width: 85%;
-            max-width: 320px;
-            padding: 12px;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
             font-family: 'Russo One';
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-decoration: none;
             border-radius: 6px;
             text-align: center;
@@ -169,13 +157,13 @@
 
         .ir-footer {
             text-align: center;
-            opacity: 0.6;
-            margin-top: 5px;
+            opacity: 0.5;
+            margin-top: 4px;
         }
 
-        .footer-copyright { font-size: 0.55rem; margin-bottom: 3px; }
-        .footer-links { font-size: 0.65rem; color: #888; }
-        .footer-links a { color: #888; text-decoration: none; margin: 0 5px; }
+        .footer-copyright { font-size: 0.5rem; }
+        .footer-links { font-size: 0.6rem; color: #888; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 4px; }
     </style>
 </head>
 <body>
@@ -220,7 +208,7 @@
         <div class="ir-footer">
             <div class="footer-copyright">© 2024 IR MEDIA AGENCY. ALL RIGHTS RESERVED.</div>
             <div class="footer-links">
-                <a href="https://youtube.com/@ir_official-esports?si=Y2mtLSwV2kr5AxgS">YouTube</a> | <a href="https://www.instagram.com/ir.official.esports?igsh=MWl5d2c0bjJmZnFucw==">Instagram</a> | <a href="https://discord.gg/bqNe8RB7SP">Discord</a>
+                <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">Discord</a>
             </div>
         </div>
     </div>
