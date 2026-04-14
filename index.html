@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>IR | INFERNO RIVALS HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ir-red: #ff3131;
+            --ir-gold: #ffd700;
+            --bg-black: #050505;
+            --card-bg: #111111;
+        }
+
+        /* --- STAGE SETUP --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background-color: var(--bg-black);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top, #1a0505 0%, #050505 100%);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 1vh 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .logo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo-img { 
+            height: 75px; 
+            width: auto;
+            filter: drop-shadow(0 0 12px var(--ir-red)); 
+        }
+
+        /* --- MINI SELECTOR --- */
+        .mini-box-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            width: 94%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .mini-box {
+            flex: 1;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 8px 2px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mini-box.active { border-color: var(--ir-red); background: #1a0000; }
+        .mini-box h3 { font-family: 'Russo One'; font-size: 0.5rem; color: #888; }
+        .mini-box .mini-name { font-size: 0.55rem; font-weight: bold; display: block; margin-top: 2px; }
+
+        /* --- MAIN DISPLAY --- */
+        #display-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+            min-height: 0;
+        }
+
+        .huge-card {
+            width: 90%;
+            max-width: 340px;
+            height: 95%; 
+            background: var(--card-bg);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #333;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .huge-card.founder { border: 1.5px solid var(--ir-gold); }
+        .huge-card.cofounder { border: 1.5px solid var(--ir-red); }
+
+        .photo-frame {
+            height: 85%; /* Increased from 75% */
+            background: #000;
+        }
+        .photo-frame img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        .card-info { 
+            height: 15%; /* Decreased from 25% */
+            padding: 5px 10px; 
+            text-align: center; 
+            background: #0d0d0d;
+            border-top: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-info h2 { 
+            font-family: 'Russo One'; 
+            font-size: 0.95rem; /* Slightly smaller font to fit better */
+            margin: 0; 
+            letter-spacing: 0.5px; 
+        }
+        .card-info p { 
+            color: var(--ir-red); 
+            font-size: 0.6rem; 
+            text-transform: uppercase; 
+            margin-top: 2px; 
+            font-weight: bold; 
+        }
+
+        /* --- FOOTER ACTIONS --- */
+        .footer-actions {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 10px;
+        }
+
+        .btn {
+            width: 85%;
+            max-width: 320px;
+            padding: 12px;
+            font-family: 'Russo One';
+            font-size: 0.8rem;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .btn-join { background: var(--ir-red); color: white; }
+        .btn-roster { border: 1px solid white; color: white; }
+
+        .ir-footer {
+            text-align: center;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        .footer-copyright { font-size: 0.55rem; margin-bottom: 3px; }
+        .footer-links { font-size: 0.65rem; color: #888; }
+        .footer-links a { color: #888; text-decoration: none; margin: 0 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" class="logo-img" alt="IR Logo">
+        </div>
+        
+        <div class="mini-box-wrapper">
+            <div class="mini-box active" onclick="showCard('dev', this)">
+                <h3>FOUNDER</h3>
+                <span class="mini-name">DEVRAJ RATHOD</span>
+            </div>
+            <div class="mini-box" onclick="showCard('aaryan', this)">
+                <h3>FOUNDER</h3>
+                <span class="mini-name">DEV JOSHII</span>
+            </div>
+            <div class="mini-box" onclick="showCard('rahul', this)">
+                <h3>CO-FOUNDER</h3>
+                <span class="mini-name">JENIL THAKOR</span>
+            </div>
+        </div>
+    </header>
+
+    <div id="display-area">
+        <div class="huge-card founder">
+            <div class="photo-frame">
+                <img src="founder2.png" alt="Devraj Rathod"> 
+            </div>
+            <div class="card-info">
+                <h2>DEVRAJ RATHOD</h2>
+                <p>Organization Founder</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-actions">
+        <a href="application.html" class="btn btn-join">Join the Team</a>
+        <a href="cards.html" class="btn btn-roster">Our Rosters</a>
+        
+        <div class="ir-footer">
+            <div class="footer-copyright">© 2024 IR MEDIA AGENCY. ALL RIGHTS RESERVED.</div>
+            <div class="footer-links">
+                <a href="https://youtube.com/@ir_official-esports?si=Y2mtLSwV2kr5AxgS">YouTube</a> | <a href="https://www.instagram.com/ir.official.esports?igsh=MWl5d2c0bjJmZnFucw==">Instagram</a> | <a href="https://discord.gg/bqNe8RB7SP">Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cardData = {
+            dev: { name: "DEVRAJ RATHOD", role: "Organization Founder", type: "founder", img: "founder2.png" },
+            aaryan: { name: "DEV JOSHII", role: "Organization Founder", type: "founder", img: "founder1.png" },
+            rahul: { name: "JENIL THAKOR", role: "Co-Founder / Board", type: "cofounder", img: "cofounder.png" }
+        };
+
+        function showCard(key, el) {
+            const display = document.getElementById('display-area');
+            const data = cardData[key];
+            
+            display.innerHTML = `
+                <div class="huge-card ${data.type}">
+                    <div class="photo-frame">
+                        <img src="${data.img}" alt="${data.name}">
+                    </div>
+                    <div class="card-info">
+                        <h2>${data.name}</h2>
+                        <p>${data.role}</p>
+                    </div>
+                </div>
+            `;
+
+            document.querySelectorAll('.mini-box').forEach(box => box.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>
